@@ -1,0 +1,87 @@
+/* Text Reveal Component Styles */
+
+.text-reveal-section {
+  background: #111;
+  color: #fff;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+}
+
+.text-reveal-section .container {
+  width: 90%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 4rem 1rem;
+}
+
+.text-reveal-section .wrapper h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.text-reveal-section .wrapper p {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 1rem;
+}
+
+/* Word styling for reveal */
+.text-reveal-section .word {
+  display: inline-block;
+  opacity: 0.3; /* start faint */
+  transform: translateY(20px); /* start slightly down */
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  white-space: pre; /* preserve spacing tokens */
+}
+
+/* Legacy word reveal styles for backwards compatibility */
+.word-reveal-item {
+  display: inline-block;
+  opacity: 0.35 !important;
+  filter: blur(1px) !important;
+  transition: opacity 0.6s ease-out, filter 0.6s ease-out !important;
+  margin-right: 0.3em;
+  color: inherit;
+}
+
+.word-reveal-item.fully-revealed {
+  opacity: 1 !important;
+  filter: blur(0px) !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .text-reveal-section .wrapper h1 {
+    font-size: 2rem;
+  }
+  
+  .text-reveal-section .wrapper p {
+    font-size: 1rem;
+  }
+  
+  .text-reveal-section .container {
+    padding: 2rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .text-reveal-section .wrapper h1 {
+    font-size: 1.5rem;
+  }
+  
+  .text-reveal-section .wrapper p {
+    font-size: 0.9rem;
+  }
+}
+
+/* Accessibility - Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .word, .word-reveal-item {
+    transition: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+  }
+}
