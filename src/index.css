@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+@import './styles/responsive.css';
+
+/* CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Root variables for your color scheme */
+:root {
+  --primary-bg: #152636;
+  --secondary-bg: #0f1f2b;
+  --primary-text: #f2e2c1;
+  --accent-orange: #fa6836;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --shadow-color: rgba(0, 0, 0, 0.8);
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--primary-bg);
+  color: var(--primary-text);
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.app {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--primary-text);
+}
+
+p {
+  line-height: 1.6;
+}
+
+/* View Transitions */
+@supports (view-transition-name: none) {
+  /* Hero section view transition */
+  [style*="viewTransitionName: hero-section"] {
+    view-transition-name: hero-section;
+  }
+  
+  /* Intro section view transition */
+  [style*="viewTransitionName: intro-section"] {
+    view-transition-name: intro-section;
+  }
+}
+
+/* Transition states */
+.is-changing {
+  pointer-events: none;
+}
+
+.is-transition-active {
+  overflow: hidden;
+}
+
+/* View transition animations */
+::view-transition-old(hero-section) {
+  animation: slide-out-up 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+::view-transition-new(intro-section) {
+  animation: slide-in-down 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+::view-transition-old(intro-section) {
+  animation: slide-out-down 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+::view-transition-new(hero-section) {
+  animation: slide-in-up 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes slide-out-up {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+}
+
+@keyframes slide-in-down {
+  from {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out-down {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+@keyframes slide-in-up {
+  from {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Button styles */
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  background-color: transparent;
+  color: var(--primary-text);
+}
+
+button:hover {
+  color: var(--accent-orange);
+}
+
+/* Links */
+a {
+  color: var(--primary-text);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--accent-orange);
+}
+
+/* Utility classes */
+.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+/* Loader scanner animations - EXACT copy of your GSAP behavior */
+@keyframes highlightMove {
+  0% { transform: translateY(0); }
+  25% { transform: translateY(0); }
+  75% { transform: translateY(2rem); }
+  100% { transform: translateY(2rem); }
+}
+
+@keyframes linesMove {
+  0% { transform: translateY(0); }
+  60% { transform: translateY(-2rem); }
+  100% { transform: translateY(0); }
+}
+
+/* Typewriter cursor blink animation - exact copy from your original */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}

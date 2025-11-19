@@ -1,0 +1,357 @@
+/* Enhanced Curtain Transition Styles */
+::view-transition {
+  animation-duration: 1.5s !important;
+  will-change: transform, opacity, clip-path !important;
+  animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1) !important;
+}
+
+::view-transition-group(*) {
+  animation-duration: 1.5s !important;
+}
+
+/* Add GPU acceleration for smoother transitions */
+::view-transition-image-pair(*) {
+  isolation: isolate;
+  will-change: transform, opacity, clip-path;
+}
+
+/* Style all view-transition groups with improved timing */
+::view-transition-group(*) {
+  animation-timing-function: cubic-bezier(0.33, 0.1, 0.25, 1) !important;
+  transform-style: preserve-3d !important;
+  will-change: transform, opacity !important;
+  backface-visibility: hidden !important;
+  z-index: auto !important;
+}
+
+/* Old content transitions out with curtain effect */
+::view-transition-old(root) {
+  animation-name: curtain-out !important;
+  animation-duration: 1.5s !important;
+  animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1) !important;
+  animation-fill-mode: forwards !important;
+  transform-style: preserve-3d !important;
+  transform-origin: center center !important;
+  backface-visibility: hidden !important;
+}
+
+/* New content transitions in with curtain effect */
+::view-transition-new(root) {
+  animation-name: curtain-in !important;
+  animation-duration: 1.5s !important;
+  animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1) !important;
+  animation-fill-mode: forwards !important;
+  transform-style: preserve-3d !important;
+  transform-origin: center center !important;
+  backface-visibility: hidden !important;
+}
+
+/* Define curtain reveal + fade + z-depth parallax animations */
+@keyframes curtain-out {
+  0% { 
+    transform: translateZ(0) scale(1);
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+    filter: brightness(1) blur(0px);
+  }
+  10% {
+    transform: translateZ(-20px) scale(0.98);
+    clip-path: inset(5% 5% 5% 5%);
+    opacity: 0.95;
+    filter: brightness(0.98) blur(0.5px);
+  }
+  30% {
+    transform: translateZ(-50px) scale(0.96);
+    clip-path: inset(10% 25% 10% 25%);
+    opacity: 0.9;
+    filter: brightness(0.95) blur(1px);
+  }
+  60% {
+    transform: translateZ(-100px) scale(0.94);
+    clip-path: inset(15% 40% 15% 40%);
+    opacity: 0.7;
+    filter: brightness(0.9) blur(2px);
+  }
+  85% {
+    transform: translateZ(-150px) scale(0.92);
+    clip-path: inset(20% 45% 20% 45%);
+    opacity: 0.4;
+    filter: brightness(0.85) blur(3px);
+  }
+  100% { 
+    transform: translateZ(-200px) scale(0.9);
+    clip-path: inset(25% 50% 25% 50%);
+    opacity: 0;
+    filter: brightness(0.8) blur(5px);
+  }
+}
+
+@keyframes curtain-in {
+  0% { 
+    transform: translateZ(200px) scale(0.9);
+    clip-path: inset(25% 50% 25% 50%);
+    opacity: 0;
+    filter: brightness(0.8) blur(5px);
+  }
+  15% {
+    transform: translateZ(150px) scale(0.92);
+    clip-path: inset(20% 45% 20% 45%);
+    opacity: 0.4;
+    filter: brightness(0.85) blur(3px);
+  }
+  40% {
+    transform: translateZ(100px) scale(0.94);
+    clip-path: inset(15% 40% 15% 40%);
+    opacity: 0.7;
+    filter: brightness(0.9) blur(2px);
+  }
+  70% {
+    transform: translateZ(50px) scale(0.96);
+    clip-path: inset(10% 25% 10% 25%);
+    opacity: 0.9;
+    filter: brightness(0.95) blur(1px);
+  }
+  90% {
+    transform: translateZ(20px) scale(0.98);
+    clip-path: inset(5% 5% 5% 5%);
+    opacity: 0.95;
+    filter: brightness(0.98) blur(0.5px);
+  }
+  100% { 
+    transform: translateZ(0) scale(1);
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+    filter: brightness(1) blur(0px);
+  }
+}
+
+/* Hero/Intro specific section transitions */
+::view-transition-old(hero-section) {
+  animation-name: curtain-out !important;
+}
+
+::view-transition-new(hero-section) {
+  animation-name: curtain-in !important;
+}
+
+::view-transition-old(intro-section) {
+  animation-name: curtain-out !important;
+}
+
+::view-transition-new(intro-section) {
+  animation-name: curtain-in !important;
+}
+
+/* Body styles during transitions */
+body.is-changing {
+  pointer-events: none;
+}
+
+body.is-transition-active {
+  overflow: hidden;
+}
+
+/* Text reveal system */
+.text-reveal-active {
+  position: relative;
+}
+
+/* Ensure text visibility during transitions */
+.is-changing .hero-bottom,
+.is-changing .specialise,
+.is-changing .frontend-solutions {
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 9999 !important;
+}
+
+/* Make transitions more visible with !important */
+#hero, #introduction {
+  transition: none !important;
+}
+
+/* Additional classes for smooth transitions */
+.smooth-transition {
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.smooth-transition * {
+  transition-property: none !important;
+}
+
+/* Section visibility classes */
+.section.hidden {
+  display: none !important;
+}
+
+/* Word reveal animations */
+.word-reveal-item {
+  display: inline;
+  transition: opacity 0.5s ease, filter 0.5s ease;
+}
+
+/* Fallback for browsers without View Transitions API */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
+/* View Transitions Name Assignments - Critical for API to work */
+#hero {
+  view-transition-name: hero-section;
+}
+
+#introduction {
+  view-transition-name: intro-section;
+}
+
+/* Ensure the sections are properly set up for transitions */
+.section {
+  will-change: transform, opacity, filter;
+}
+
+/* View Transitions polyfill support */
+@supports (view-transition-name: none) {
+  .hero-section {
+    view-transition-name: hero-section;
+  }
+  
+  .intro-section {
+    view-transition-name: intro-section;
+  }
+}
+
+/* GSAP Page Transition Styles */
+#hero, #introduction {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  transform: translateY(0%);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Smooth hardware acceleration for GSAP transitions */
+.gsap-transitioning {
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform, opacity;
+}
+
+/* Disable default transitions during GSAP animations */
+.gsap-transitioning * {
+  transition: none !important;
+}
+
+/* Curtain transition overlay effect */
+.curtain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+  z-index: 9998;
+  pointer-events: none;
+  opacity: 0;
+  transform: scaleY(0);
+  transform-origin: top;
+}
+
+.curtain-overlay.active {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+/* Barba.js specific styles - eliminate blank space */
+[data-barba="container"] {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  transform: translateY(0%);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+/* Ensure no blank space during Barba transitions */
+.barba-once,
+.barba-enter,
+.barba-leave {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+/* Prevent scrollbar from appearing during transitions */
+body.barba-transitioning {
+  overflow: hidden !important;
+}
+
+/* Smooth Transition Styles */
+.smooth-transitioning {
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.smooth-transitioning * {
+  transition: none !important;
+  animation: none !important;
+}
+
+/* Enhanced section styles for smooth transitions */
+#hero, #introduction {
+  perspective: 1000px;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+}
+
+/* Optimize performance during transitions */
+.smooth-transitioning #hero,
+.smooth-transitioning #introduction {
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Liquid curtain effect styles */
+@keyframes liquid-curtain-down {
+  0% {
+    transform: translateY(0%) rotateX(0deg) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-50%) rotateX(-5deg) scale(0.98);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-100%) rotateX(-10deg) scale(0.95);
+    opacity: 0.8;
+  }
+}
+
+@keyframes liquid-curtain-up {
+  0% {
+    transform: translateY(100%) rotateX(10deg) scale(0.95);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(50%) rotateX(5deg) scale(0.98);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(0%) rotateX(0deg) scale(1);
+    opacity: 1;
+  }
+}
