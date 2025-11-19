@@ -20,8 +20,6 @@ export default function ProjectsSection({ onBackToHowItWorks, onNextToWhoAreWe, 
 
   // Function to handle project link clicks
   const handleProjectClick = (url: string, e?: React.MouseEvent) => {
-    alert(`🚨 CLICK WORKING! Opening: ${url}`)
-    
     if (e) {
       e.preventDefault()
       e.stopPropagation()
