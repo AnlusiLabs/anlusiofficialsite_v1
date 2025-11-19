@@ -16,7 +16,7 @@ const Navbar: React.FC<NavbarProps> = ({ hasAudio, onSoundToggle }) => {
     // Add your navigation logic here
   };
 
-  const handleNavLinkClick = (section: string) => {
+  const handleNavLinkClick = (_section: string) => {
     // Add your navigation logic here
     setIsMenuOpen(false); // Close mobile menu
   };

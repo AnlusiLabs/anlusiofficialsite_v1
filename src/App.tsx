@@ -245,8 +245,6 @@ function App() {
           }
           
           lastScrollTime.current = now;
-          const scrollDirection = event.deltaY > 0 ? 'DOWN' : 'UP';
-          
           
           if (event.deltaY > 0) {
             // SCROLL DOWN = MOVE CARDS LEFT (right to left motion)

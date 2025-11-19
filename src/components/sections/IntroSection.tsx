@@ -13,7 +13,7 @@ interface IntroSectionProps {
   onSoundToggle: () => void;
 }
 
-export default function IntroSection({ onScrollToBenefits, isTransitioning, hasAudio, onSoundToggle }: IntroSectionProps) {
+export default function IntroSection({ onScrollToBenefits, hasAudio, onSoundToggle }: IntroSectionProps) {
   
   const containerRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);

@@ -114,7 +114,8 @@ export default function HeroSection({ hasAudio, onReadyToTalk, onSoundToggle }: 
             }
           });
         },
-        (progress) => {
+        () => {
+          // Progress callback
         },
         () => {
           createFallbackCube();
